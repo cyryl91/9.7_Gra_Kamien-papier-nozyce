@@ -1,0 +1,9 @@
+.welcome{
+	border-bottom: 1px solid black;
+}
+.newGameElement {
+	padding: 30px;
+}
+.resultsTableElement{
+	margin-top: 20px;
+}
