@@ -127,6 +127,8 @@ function checkRoundWinner(playerPick, computerPick){
     else if (winnerIs == 'none'){
     	remisElem.innerText = '---REMIS---';
     }
+    setGamePoints();
+    endWinnerIs();
 
 }
 
@@ -135,14 +137,20 @@ function setGamePoints() {
     computerPointsElem.innerHTML = computer.score;
 }
 
+/*
 function endWinnerIs(){
-	if (player.score = 3){
-		console.log('zwycięża ' +player.name);
+	if (player.score != 4){
+		console.log('graj dalej');
 	}
-	else if (computer.score = 3){
-		console.log('zwycieęża komputer');
+	else if (player.score == 4){
+		console.log('wygrywasz ' +player.name);
 	}
-	else {
-		console.log('gramy dalej, brak zwycięscy');
-	};
+}
+*/
+
+function endWinnerIs(){
+	while (player.score == 4){
+		console.log('wygrywasz ' +player.name);
+		player.score++;
+	}
 }
