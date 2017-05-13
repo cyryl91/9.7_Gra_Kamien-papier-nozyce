@@ -1,8 +1,8 @@
 function newGame(e){
 	console.log('nowa gra');
-};
+}
 function playerPick(i){
-};
+}
 var newGameBtn = document.getElementById('js-newGameElement');
 newGameBtn.addEventListener('click', newGame);
 
@@ -22,7 +22,7 @@ pickScissors.addEventListener('click', function(){
 });
 
 // ------------------------------------------------- logika gry --------------------------
-var gameState = 'notStarted', //możliwości : 'ended'  'started'
+var gameState = 'notStarted',  //możliwości wyboru started,  ended
 	player = {
 		name: '',
 		score: 0
@@ -31,8 +31,10 @@ var gameState = 'notStarted', //możliwości : 'ended'  'started'
 		score: 0
 	};
 var newGameElm = document.getElementById('js-newGameElement'),
+	newGameBtn = document.getElementById('js-newGameButton'),
 	pickElem = document.getElementById('js-playerPickElement'),
-	resultsElem = document.getElementById('js-resultsTableElement');
+	resultsElem = document.getElementById('js-resultsTableElement'),
+	imageElem = document.getElementById('js-winnerIcon');
 
 function setGameElements(){
 	 switch(gameState) {
@@ -41,14 +43,17 @@ function setGameElements(){
 	        pickElem.style.display = 'block';
 	        pickElem.style.padding = '60px';
 	        resultsElem.style.display = 'block';
+	        imageElem.style.display = 'none';
 	    break;
 	    case 'ended':
-	        newGameBtn.innerText = 'Jeszcze raz';                         //nie zmienia nazwy bnt
+        	newGameBtn.innerText = 'Jeszcze raz';  
+	        imageElem.style.display = 'none';                      //nie zmienia nazwy bnt
 	    case 'notStarted':
 	    default:
 	        newGameElm.style.display = 'block';
 	        pickElem.style.display = 'none';
 	        resultsElem.style.display = 'none';
+	        imageElem.style.display = 'none';
   }
 }
 setGameElements(gameState);
@@ -60,7 +65,7 @@ var playerPointsElem = document.getElementById('js-playerPoints'),
 
 function newGame(){
 	player.name = prompt('użytkowniku podaj swoje imię: ');
-	alert('grasz jako ' +player.name);
+	alert('Rozpoczniesz rozgrywkę jako ' +player.name+ ' powodzenia.');
 	if(player.name) {
 		player.score = computer.score = 0;
 		gameState = 'started';
@@ -137,20 +142,27 @@ function setGamePoints() {
     computerPointsElem.innerHTML = computer.score;
 }
 
-/*
-function endWinnerIs(){
-	if (player.score != 4){
-		console.log('graj dalej');
-	}
-	else if (player.score == 4){
-		console.log('wygrywasz ' +player.name);
-	}
-}
-*/
 
 function endWinnerIs(){
-	while (player.score == 4){
-		console.log('wygrywasz ' +player.name);
-		player.score++;
+	if (player.score != 10){
+		console.log('graj dalej');
 	}
+	else if (player.score == 10){
+		
+		function winnerIconDisplay() {
+    		 imageElem.style.display = 'block';
+		}
+		var show = setTimeout(winnerIconDisplay, 100);
+		alert('wygrywasz ' +player.name+ ', pierwszy zdobyłęś 10 punktów');
+
+		
+		gameState = 'ended';
+		setGameElements();
+	}
+	else if(computer.score == 10){
+		alert('Przegrywasz, computer pierwszy zdobył 10 punktów');
+		gameState = 'ended';
+		setGameElements();
+	}
+
 }
