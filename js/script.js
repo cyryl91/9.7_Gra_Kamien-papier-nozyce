@@ -134,6 +134,8 @@ function checkRoundWinner(playerPick, computerPick){
     }
     setGamePoints();
     endWinnerIs();
+    endWinnerIsPlayer();
+    endWinnerIsComputer();
 
 }
 
@@ -147,7 +149,10 @@ function endWinnerIs(){
 	if (player.score != 10){
 		console.log('graj dalej');
 	}
-	else if (player.score == 10){
+
+}
+function endWinnerIsPlayer(){
+	if (player.score == 10){
 		
 		function winnerIconDisplay() {
     		 imageElem.style.display = 'block';
@@ -159,10 +164,12 @@ function endWinnerIs(){
 		gameState = 'ended';
 		setGameElements();
 	}
-	else if(computer.score == 10){
+
+}
+function endWinnerIsComputer(){
+	if(computer.score == 10){
 		alert('Przegrywasz, computer pierwszy zdobył 10 punktów');
 		gameState = 'ended';
 		setGameElements();
-	}
-
+}
 }
