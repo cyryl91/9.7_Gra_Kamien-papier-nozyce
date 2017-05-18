@@ -18,7 +18,7 @@ pickPaper.addEventListener('click', function(){
 	playerPick('paper');
 });
 pickScissors.addEventListener('click', function(){
-	playerPick('Scissors');
+	playerPick('scissors');
 });
 
 // ------------------------------------------------- logika gry --------------------------
@@ -83,7 +83,7 @@ function playerPick(playerPick) {
 
 //------------------- function pick computer, save in console
 function getComputerPick(){
-	var possiblePicks = ['rock', 'paper', 'Scissors'];
+	var possiblePicks = ['rock', 'paper', 'scissors'];
 	return possiblePicks[Math.floor(Math.random()*3)];
 }
 
